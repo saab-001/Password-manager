@@ -80,9 +80,9 @@ def search():
             messagebox.showinfo(title=web_data, message=f"Username: {req_data['Username']}"
                                                         f"\nPassword: {req_data['Password']}")
     except KeyError:
-        messagebox.showwarning(message="No such data found.")
+        messagebox.showwarning(message="No data found.")
     except FileNotFoundError:
-        messagebox.showwarning(message="No data is added.")
+        messagebox.showwarning(message="No data found.")
 
 
 window = Tk()
