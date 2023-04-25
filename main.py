@@ -69,6 +69,22 @@ def retrieve():
             pass_in.delete(0, END)
 
 
+def search():
+
+    web_data = web_in.get()
+
+    try:
+        with open("Data.json", "r") as file:
+            data = json.load(file)
+            req_data = data[web_data]
+            messagebox.showinfo(title=web_data, message=f"Username: {req_data['Username']}"
+                                                        f"\nPassword: {req_data['Password']}")
+    except KeyError:
+        messagebox.showwarning(message="No such data found.")
+    except FileNotFoundError:
+        messagebox.showwarning(message="No data is added.")
+
+
 window = Tk()
 window.title("Password Manager")
 window.config(padx=100, pady=100, bg="white")
@@ -81,9 +97,12 @@ logo.grid(row=0, column=0, columnspan=3)
 website = Label(text="Website: ", font=(None, 10, "normal"), bg="white")
 website.grid(row=1, column=0)
 
-web_in = Entry(width=30)
+web_in = Entry(width=20)
 web_in.focus()
-web_in.grid(row=1, column=1, columnspan=2)
+web_in.grid(row=1, column=1)
+
+search_button = Button(text="Search", command=search)
+search_button.grid(row=1, column=2)
 
 username = Label(text="Email/Username: ", font=(None, 10, "normal"), bg="white")
 username.grid(row=2, column=0)
