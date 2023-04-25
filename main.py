@@ -95,31 +95,31 @@ logo.create_image(100, 100, image=icon)
 logo.grid(row=0, column=0, columnspan=3)
 
 website = Label(text="Website: ", font=(None, 10, "normal"), bg="white")
-website.grid(row=1, column=0)
+website.grid(row=1, column=0, pady=1)
 
-web_in = Entry(width=20)
+web_in = Entry(width=20, highlightcolor="blue", highlightthickness=1)
 web_in.focus()
-web_in.grid(row=1, column=1)
+web_in.grid(row=1, column=1, pady=1)
 
 search_button = Button(text="Search", command=search)
-search_button.grid(row=1, column=2)
+search_button.grid(row=1, column=2, pady=1)
 
 username = Label(text="Email/Username: ", font=(None, 10, "normal"), bg="white")
-username.grid(row=2, column=0)
+username.grid(row=2, column=0, pady=1)
 
-user_in = Entry(width=30)
-user_in.grid(row=2, column=1, columnspan=2)
+user_in = Entry(width=30, highlightcolor="blue", highlightthickness=1)
+user_in.grid(row=2, column=1, columnspan=2, pady=1)
 
 Password = Label(text="Password: ", font=(None, 10, "normal"), bg="white")
-Password.grid(row=3, column=0)
+Password.grid(row=3, column=0, pady=1)
 
-pass_in = Entry(width=20)
-pass_in.grid(row=3, column=1)
+pass_in = Entry(width=20, highlightcolor="blue", highlightthickness=1)
+pass_in.grid(row=3, column=1, pady=1)
 
 pass_generator = Button(text="Generate", command=generate_password)
-pass_generator.grid(row=3, column=2)
+pass_generator.grid(row=3, column=2, pady=1)
 
 add_button = Button(text="Add", width=25, command=retrieve)
-add_button.grid(row=4, column=1, columnspan=2)
+add_button.grid(row=4, column=1, columnspan=2, pady=1)
 
 window.mainloop()
