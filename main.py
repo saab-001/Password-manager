@@ -1,3 +1,4 @@
+import json
 from tkinter import *
 from tkinter import messagebox
 import random
@@ -35,6 +36,13 @@ def retrieve():
     user_data = user_in.get()
     pass_data = pass_in.get()
 
+    new_data = {
+        web_data: {
+            "Username": user_data,
+            "Password": pass_data
+        }
+    }
+
     user_confirm = False
 
     if len(web_data) == 0 or len(user_data) == 0 or len(pass_data) == 0:
@@ -43,12 +51,22 @@ def retrieve():
         user_confirm = messagebox.askyesno(title=f"{web_data}", message=f"Your Data: \nEmail: {user_data} \nPassword: "
                                                                         f"{pass_data} \nDo you want to save it?")
     if user_confirm:
-        with open("Data.txt", "a") as file:
-            file.write(f"{web_data} | {user_data} | {pass_data}\n")
 
-        web_in.delete(0, END)
-        user_in.delete(0, END)
-        pass_in.delete(0, END)
+        try:
+            with open("Data.json", "r") as file:
+                data = json.load(file)
+                data.update(new_data)
+
+            with open("Data.json", "w") as file:
+                json.dump(data, file, indent=4)
+
+        except FileNotFoundError:
+            with open("Data.json", "w") as file:
+                json.dump(new_data, file, indent=4)
+        finally:
+            web_in.delete(0, END)
+            user_in.delete(0, END)
+            pass_in.delete(0, END)
 
 
 window = Tk()
